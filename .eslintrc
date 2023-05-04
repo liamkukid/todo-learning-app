@@ -5,6 +5,10 @@
         "react-app/jest",
         "prettier"
     ],
+    "ignorePatterns": [
+        "index.js",
+        "reportWebVitals.js"
+    ],
     "plugins": [
         "react",
         "prettier"

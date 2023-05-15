@@ -1,7 +1,9 @@
 .app {
   display: grid;
   gap: 0.2rem;
-  grid-template-rows: 20rem 40rem;
+  width: 100vw;
+  height: 100vh;
+  grid-template-rows: 3fr 4fr;
 }
 
 .head {

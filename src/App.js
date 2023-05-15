@@ -17,7 +17,9 @@ function App() {
   return (
     <div className={style.app}>
       <div
-        style={{ backgroundImage: 'url(/background_colorful.jpg)' }}
+        style={{
+          backgroundImage: `url(${`${process.env.PUBLIC_URL}/background_colorful.jpg`})`,
+        }}
         className={style.head}
       >
         <Input onSubmit={addNewTodo} />

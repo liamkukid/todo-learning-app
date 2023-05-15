@@ -5,7 +5,7 @@ export default function List({ todos }) {
     const rowsArr = [];
     for (let j = 0; j < todos.length; j++) {
       rowsArr.push(
-        <div key={todos[j]} className="list_item">
+        <div key={j} className="list_item">
           {todos[j]}
         </div>
       );

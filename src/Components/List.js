@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
 import style from './list.module.scss';
+import gabarge from '../gabarge.svg';
 
-export default function List({ todos, onDone }) {
+export default function List({ todos, onDone, onRemove }) {
   const handleChange = e => {
     onDone(e.target.value, e.target.checked);
+  };
+
+  const handleRemoveClick = e => {
+    onRemove(e.target.parentElement.value);
   };
 
   if (todos && todos.length > 0) {
@@ -23,6 +28,14 @@ export default function List({ todos, onDone }) {
               onChange={handleChange}
             />
             {todo.title}
+            <button
+              value={todo.id}
+              type="button"
+              className={style.remove_todo_button}
+              onClick={handleRemoveClick}
+            >
+              <img src={gabarge} className="gabarge-logo" alt="gabarge" />
+            </button>
           </div>
         ))}
       </div>
@@ -39,6 +52,7 @@ List.propTypes = {
     })
   ),
   onDone: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 List.defaultProps = {

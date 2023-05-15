@@ -7,16 +7,37 @@
 }
 
 .list_item {
+    display: grid;
     height: 40px;
     border: 2px solid var(--navy);
     border-radius: 10px;
     text-indent: 5px;
     background-color: var(--grey);
     color: var(--dark);
-    font-size:20px;
-    font-family:'revert';
+    font-size: 20px;
+    font-family: "revert";
+    grid-template-columns: 5% 90% 5%;
+    align-content: center;
 }
 
 .list_item_done {
     text-decoration: line-through;
+}
+
+.remove_todo_button {
+    border: 0px;
+    background-color: inherit;
+}
+
+.remove_todo_button:hover,
+.remove_todo_button:focus {
+    cursor: pointer;
+}
+
+.remove_todo_button:hover {
+  transform: translateY(-1px);
+}
+
+.remove_todo_button:active {
+  transform: translateY(0);
 }

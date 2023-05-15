@@ -25,6 +25,12 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
+  function handleTaskRemove(value) {
+    const newTodos = todos.filter(x => x.id !== value);
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+  }
+
   return (
     <div className={style.app}>
       <div
@@ -36,7 +42,11 @@ function App() {
         <Input onSubmit={addNewTodo} />
       </div>
       <div className={style.body}>
-        <List todos={todos} onDone={handleTaskDone} />
+        <List
+          todos={todos}
+          onDone={handleTaskDone}
+          onRemove={handleTaskRemove}
+        />
       </div>
     </div>
   );

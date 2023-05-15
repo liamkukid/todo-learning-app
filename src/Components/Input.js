@@ -1,15 +1,25 @@
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import style from './input.module.scss';
 
 export default function Input({ onSubmit }) {
-  function onFormSubmit(e) {
-    const { value } = e.target.todo;
-    onSubmit(value);
+  const inputRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    onSubmit(inputRef.current.value);
   }
 
   return (
-    <form className={style.form_content} onSubmit={onFormSubmit}>
-      <input className={style.form_input} name="todo" type="text" />
+    <form className={style.form_content} onSubmit={handleSubmit}>
+      <input
+        className={style.form_input}
+        name="todo_input"
+        type="text"
+        id="todo_input"
+        ref={inputRef}
+      />
       <button className={style.form_submit} type="submit">
         Save
       </button>

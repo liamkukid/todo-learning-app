@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
+
 export default function List({ todos }) {
   function dotosList() {
     const rowsArr = [];
@@ -14,3 +15,7 @@ export default function List({ todos }) {
 
   return <div className="list">{dotosList()}</div>;
 }
+
+List.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
+};

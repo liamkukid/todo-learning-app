@@ -15,12 +15,14 @@ function App() {
   }
 
   function handleTaskDone(value, done) {
-    const todo = todos.find(x => x.id === value);
-    if (todo) {
-      todo.done = done;
-      const newTodos = todos.filter(x => x.id !== value);
-      setTodos([...newTodos, todo]);
-    }
+    const newTodos = todos.map(obj => {
+      if (obj.id === value) {
+        return { ...obj, done: done };
+      }
+      return obj;
+    });
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   return (

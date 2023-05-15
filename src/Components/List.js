@@ -6,26 +6,28 @@ export default function List({ todos, onDone }) {
     onDone(e.target.value, e.target.checked);
   };
 
-  return (
-    <div className={style.list}>
-      {todos.map(todo => (
-        <div
-          key={todo.id}
-          className={`${style.list_item} ${
-            todo.done ? style.list_item_done : ''
-          }`}
-        >
-          <input
-            type="checkbox"
-            value={todo.id}
-            checked={todo.done}
-            onChange={handleChange}
-          />
-          {todo.title}
-        </div>
-      ))}
-    </div>
-  );
+  if (todos && todos.length > 0) {
+    return (
+      <div className={style.list}>
+        {todos.map(todo => (
+          <div
+            key={todo.id}
+            className={`${style.list_item} ${
+              todo.done ? style.list_item_done : ''
+            }`}
+          >
+            <input
+              type="checkbox"
+              value={todo.id}
+              checked={todo.done}
+              onChange={handleChange}
+            />
+            {todo.title}
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 List.propTypes = {

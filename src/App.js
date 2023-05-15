@@ -7,7 +7,9 @@ function App() {
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
 
   function addNewTodo(value) {
-    const newDotos = [...todos.slice(), { title: value }];
+    const newDotos = todos
+      ? [...todos.slice(), { title: value }]
+      : [{ title: value }];
     setTodos(newDotos);
     localStorage.setItem('todos', JSON.stringify(newDotos));
   }

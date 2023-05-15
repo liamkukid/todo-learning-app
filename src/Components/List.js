@@ -20,7 +20,7 @@ export default function List({ todos }) {
 }
 
 List.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
+  todos: PropTypes.arrayOf(PropTypes.shape({ title: PropTypes.string })),
 };
 
 List.defaultProps = {

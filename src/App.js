@@ -17,10 +17,9 @@ function App() {
   function handleTaskDone(value, done) {
     const todo = todos.find(x => x.id === value);
     if (todo) {
-      console.log(todo);
-      todo.done = !done;
-      const newTodos = [...todos.filter(x => x.id !== value), todo];
-      setTodos(newTodos);
+      todo.done = done;
+      const newTodos = todos.filter(x => x.id !== value);
+      setTodos([...newTodos, todo]);
     }
   }
 

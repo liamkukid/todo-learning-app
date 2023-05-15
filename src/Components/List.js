@@ -9,7 +9,12 @@ export default function List({ todos, onDone }) {
   return (
     <div className={style.list}>
       {todos.map(todo => (
-        <div key={todo.id} className={style.list_item}>
+        <div
+          key={todo.id}
+          className={`${style.list_item} ${
+            todo.done ? style.list_item_done : ''
+          }`}
+        >
           <input
             type="checkbox"
             value={todo.id}

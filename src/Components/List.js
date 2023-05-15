@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 
 export default function List({ todos }) {
   function dotosList() {
+    if (!todos || todos.length === 0) {
+      return [];
+    }
     const rowsArr = [];
     for (let j = 0; j < todos.length; j++) {
       rowsArr.push(
@@ -17,5 +20,9 @@ export default function List({ todos }) {
 }
 
 List.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
+  todos: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
+};
+
+List.defaultProps = {
+  todos: [],
 };

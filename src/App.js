@@ -4,16 +4,20 @@ import List from './Components/List';
 import style from './App.module.scss';
 
 function App() {
-  const [todos, setTodos] = useState(['task 1', 'task 2']);
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
 
   function addNewTodo(value) {
-    const newDotos = [...todos.slice(), value];
+    const newDotos = [...todos.slice(), { title: value }];
     setTodos(newDotos);
+    localStorage.setItem('todos', JSON.stringify(newDotos));
   }
 
   return (
     <div className={style.app}>
-      <div className={style.head}>
+      <div
+        style={{ backgroundImage: 'url(/background_colorful.jpg)' }}
+        className={style.head}
+      >
         <Input onSubmit={addNewTodo} />
       </div>
       <div className={style.body}>

@@ -6,7 +6,7 @@ export default function List({ todos }) {
     for (let j = 0; j < todos.length; j++) {
       rowsArr.push(
         <div key={j} className="list_item">
-          {todos[j]}
+          {todos[j].title}
         </div>
       );
     }

@@ -8,7 +8,9 @@ function Input({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-    onSubmit(inputRef.current.value);
+    if (inputRef.current.value) {
+      onSubmit(inputRef.current.value);
+    }
   }
 
   return (

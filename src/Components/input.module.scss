@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 .form_content {
     display: flex;
     flex-direction: column;
@@ -5,34 +7,47 @@
 }
 
 .form_input {
-    width: 400px;
-    height: 30px;
+    width: 450px;
+    height: 26px;
     margin-bottom: 2px;
     border-radius: 20px;
-    border: 1px solid #2d9fd9;
-    font-size:24px;
+    border: 2px solid var(--navy);
+    background-color: var(--grey);
+    font-size:20px;
     font-family:'revert';
     text-indent: 6px;
 }
 
-.form_input:focus {
+.form_input:focus,
+.form_input:hover {
     outline: none;
-    border: 2px solid #a0d18c;
-    color: #2d9fd9;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+    background-color: var(--light);
 }
 
 .form_submit {
     border-radius: 20px;
-    border: 1px solid #2d9fd9;
+    border: 2px solid var(--navy);
+    color: var(--navy);
     width: 100px;
     height: 30px;
-    background-color: #6fe0af;
+    background-color: var(--ligth-beige);
     font-size:20px;
     font-family:'revert';
 }
 
+.form_submit:hover,
 .form_submit:focus {
-    outline: none;
-    border: 2px solid #a0d18c;
-    color: #2d9fd9;
+    cursor: pointer;
+    background-color: var(--beige);
+}
+
+.form_submit:hover {
+  transform: translateY(-1px);
+}
+
+.form_submit:active {
+  background-color: var(--navy);
+  transform: translateY(0);
 }

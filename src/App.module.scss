@@ -1,3 +1,5 @@
+@import './styles/variables.scss';
+
 .app {
   display: grid;
   gap: 0.2rem;
@@ -13,5 +15,5 @@
 }
 
 .body {
-  background-color: rgb(241, 246, 221);
+  background-color: var(--ligth-beige);
 }

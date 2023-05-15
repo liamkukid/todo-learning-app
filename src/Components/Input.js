@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
+import style from './input.module.scss';
 
 export default function Input({ onSubmit }) {
   function onFormSubmit(e) {
-    e.preventDefault();
-    e.stopPropagation();
     const { value } = e.target.todo;
     onSubmit(value);
   }
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <input name="todo" type="text" />
-      <button type="submit">Save</button>
+    <form className={style.form_content} onSubmit={onFormSubmit}>
+      <input className={style.form_input} name="todo" type="text" />
+      <button className={style.form_submit} type="submit">
+        Save
+      </button>
     </form>
   );
 }

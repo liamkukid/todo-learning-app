@@ -5,13 +5,13 @@ import style from './input.module.scss';
 function Input({ onSubmit }) {
   const inputRef = useRef();
 
-  function handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
     e.stopPropagation();
     if (inputRef.current.value) {
       onSubmit(inputRef.current.value);
     }
-  }
+  };
 
   return (
     <form className={style.form_content} onSubmit={handleSubmit}>

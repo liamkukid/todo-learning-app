@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import style from './list.module.scss';
-import gabarge from '../gabarge.svg';
+import gabarge from '../icons/gabarge.svg';
 
 export default function List({ todos, onDone, onRemove }) {
   const handleChange = e => {

@@ -21,6 +21,7 @@ function Input({ onSubmit }) {
         type="text"
         id="todo_input"
         ref={inputRef}
+        placeholder="New todo..."
       />
       <button className={style.form_submit} type="submit">
         Save

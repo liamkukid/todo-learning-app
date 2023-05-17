@@ -1,3 +1,4 @@
+import { useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export const TASK_DONE_TYPE = 'TASK_DONE';
@@ -48,4 +49,26 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
-export default reducer;
+const useTodosStore = () => {
+  const [todos, dispatch] = useReducer(reducer);
+
+  useEffect(() => {
+    dispatch({ type: SET_UP_TYPE });
+  }, []);
+
+  function handleAddNewTodo(value) {
+    dispatch({ type: ADD_TODO_TYPE, payload: { value } });
+  }
+
+  function handleTaskDone(id, done) {
+    dispatch({ type: TASK_DONE_TYPE, payload: { id, done } });
+  }
+
+  function handleTaskRemove(id) {
+    dispatch({ type: TASK_REMOVE_TYPE, payload: { id } });
+  }
+
+  return [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove];
+};
+
+export default useTodosStore;

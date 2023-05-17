@@ -1,7 +1,7 @@
 import Input from './Components/Input';
 import List from './Components/List';
 import style from './App.module.scss';
-import useTodosStore from './AppReducer';
+import useTodosStore from './UseTodosStore';
 
 export default function App() {
   const [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove] =

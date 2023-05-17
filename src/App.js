@@ -7,7 +7,7 @@ import reducer, {
   ADD_TODO_TYPE,
   TASK_REMOVE_TYPE,
   SET_UP_TYPE,
-} from './appReducer';
+} from './AppReducer';
 
 export default function App() {
   const [todos, dispatch] = useReducer(reducer);

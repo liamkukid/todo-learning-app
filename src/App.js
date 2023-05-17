@@ -7,10 +7,6 @@ import style from './App.module.scss';
 function App() {
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
 
-  function componentDidMount() {
-    console.log('componentDidMount');
-  }
-
   function addNewTodo(value) {
     const newTask = { title: value, done: false, id: uuidv4() };
     const newDotos = todos ? [...todos.slice(), newTask] : [newTask];

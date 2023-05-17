@@ -4,9 +4,11 @@
     margin: 4px 4px 4px;
     display: grid;
     gap: 2px;
+    justify-content: center;
 }
 
 .list_item {
+    width: 90vw;
     display: grid;
     height: 40px;
     border: 2px solid var(--navy);
@@ -16,7 +18,7 @@
     color: var(--dark);
     font-size: 20px;
     font-family: "revert";
-    grid-template-columns: 5% 90% 5%;
+    grid-template-columns: 10% 80% 10%;
     align-content: center;
 }
 

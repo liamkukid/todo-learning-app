@@ -1,34 +1,26 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useReducer } from 'react';
 import Input from './Components/Input';
 import List from './Components/List';
 import style from './App.module.scss';
+import reducer from './appReducer';
 
-function App() {
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
+export default function App() {
+  const [todos, dispatch] = useReducer(reducer);
 
-  function addNewTodo(value) {
-    const newTask = { title: value, done: false, id: uuidv4() };
-    const newDotos = todos ? [...todos.slice(), newTask] : [newTask];
-    setTodos(newDotos);
-    localStorage.setItem('todos', JSON.stringify(newDotos));
+  useEffect(() => {
+    dispatch({ type: 'setUp' });
+  }, []);
+
+  function handleAddNewTodo(value) {
+    dispatch({ type: 'addNewTodo', payload: { value } });
   }
 
-  function handleTaskDone(value, done) {
-    const newTodos = todos.map(obj => {
-      if (obj.id === value) {
-        return { ...obj, done: done };
-      }
-      return obj;
-    });
-    setTodos(newTodos);
-    localStorage.setItem('todos', JSON.stringify(newTodos));
+  function handleTaskDone(id, done) {
+    dispatch({ type: 'taskDone', payload: { id, done } });
   }
 
-  function handleTaskRemove(value) {
-    const newTodos = todos.filter(x => x.id !== value);
-    setTodos(newTodos);
-    localStorage.setItem('todos', JSON.stringify(newTodos));
+  function handleTaskRemove(id) {
+    dispatch({ type: 'taskRemove', payload: { id } });
   }
 
   return (
@@ -39,7 +31,7 @@ function App() {
         }}
         className={style.head}
       >
-        <Input onSubmit={addNewTodo} />
+        <Input onSubmit={handleAddNewTodo} />
       </div>
       <div className={style.body}>
         <List
@@ -51,5 +43,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -1,10 +1,10 @@
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export const TASK_DONE_TYPE = 'TASK_DONE';
-export const ADD_TODO_TYPE = 'ADD_TODO';
-export const TASK_REMOVE_TYPE = 'TASK_REMOVE';
-export const SET_UP_TYPE = 'SET_UP';
+const TASK_DONE_TYPE = 'TASK_DONE';
+const ADD_TODO_TYPE = 'ADD_TODO';
+const TASK_REMOVE_TYPE = 'TASK_REMOVE';
+const SET_UP_TYPE = 'SET_UP';
 
 const KEY_TODO = 'KEY_TODO';
 
@@ -56,17 +56,17 @@ const useTodosStore = () => {
     dispatch({ type: SET_UP_TYPE });
   }, []);
 
-  function handleAddNewTodo(value) {
+  const handleAddNewTodo = useCallback(value => {
     dispatch({ type: ADD_TODO_TYPE, payload: { value } });
-  }
+  });
 
-  function handleTaskDone(id, done) {
+  const handleTaskDone = useCallback((id, done) => {
     dispatch({ type: TASK_DONE_TYPE, payload: { id, done } });
-  }
+  });
 
-  function handleTaskRemove(id) {
+  const handleTaskRemove = useCallback(id => {
     dispatch({ type: TASK_REMOVE_TYPE, payload: { id } });
-  }
+  });
 
   return [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove];
 };

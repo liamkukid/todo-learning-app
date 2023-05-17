@@ -2,25 +2,30 @@ import { useEffect, useReducer } from 'react';
 import Input from './Components/Input';
 import List from './Components/List';
 import style from './App.module.scss';
-import reducer from './appReducer';
+import reducer, {
+  TASK_DONE_TYPE,
+  ADD_TODO_TYPE,
+  TASK_REMOVE_TYPE,
+  SET_UP_TYPE,
+} from './appReducer';
 
 export default function App() {
   const [todos, dispatch] = useReducer(reducer);
 
   useEffect(() => {
-    dispatch({ type: 'setUp' });
+    dispatch({ type: SET_UP_TYPE });
   }, []);
 
   function handleAddNewTodo(value) {
-    dispatch({ type: 'addNewTodo', payload: { value } });
+    dispatch({ type: ADD_TODO_TYPE, payload: { value } });
   }
 
   function handleTaskDone(id, done) {
-    dispatch({ type: 'taskDone', payload: { id, done } });
+    dispatch({ type: TASK_DONE_TYPE, payload: { id, done } });
   }
 
   function handleTaskRemove(id) {
-    dispatch({ type: 'taskRemove', payload: { id } });
+    dispatch({ type: TASK_REMOVE_TYPE, payload: { id } });
   }
 
   return (

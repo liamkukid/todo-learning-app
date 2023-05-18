@@ -1,5 +1,6 @@
 import Input from './Components/Input';
 import List from './Components/List';
+import CommandPanel from './Components/CommandPanel';
 import style from './App.module.scss';
 import useTodosStore from './UseTodosStore';
 
@@ -15,7 +16,12 @@ export default function App() {
         }}
         className={style.head}
       >
-        <Input onSubmit={handleAddNewTodo} />
+        <div className={style.input}>
+          <Input onSubmit={handleAddNewTodo} />
+        </div>
+        <div className={style.commandPanel}>
+          <CommandPanel todos={todos} />
+        </div>
       </div>
       <div className={style.body}>
         <List

@@ -5,8 +5,16 @@ import style from './App.module.scss';
 import useTodosStore from './UseTodosStore';
 
 export default function App() {
-  const [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove] =
-    useTodosStore();
+  const [
+    todos,
+    handleAddNewTodo,
+    handleTaskDone,
+    handleTaskRemove,
+    handleRemoveCompleted,
+  ] = useTodosStore();
+  const test = e => {
+    console.log(e.target.value);
+  };
 
   return (
     <div className={style.app}>
@@ -20,7 +28,13 @@ export default function App() {
           <Input onSubmit={handleAddNewTodo} />
         </div>
         <div className={style.commandPanel}>
-          <CommandPanel todos={todos} />
+          <CommandPanel
+            todos={todos}
+            showAll={test}
+            filterActive={test}
+            filterCompleted={test}
+            clearCompleted={handleRemoveCompleted}
+          />
         </div>
       </div>
       <div className={style.body}>

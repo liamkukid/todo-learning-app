@@ -5,6 +5,7 @@ const TASK_DONE_TYPE = 'TASK_DONE';
 const ADD_TODO_TYPE = 'ADD_TODO';
 const TASK_REMOVE_TYPE = 'TASK_REMOVE';
 const SET_UP_TYPE = 'SET_UP';
+const REMOVE_COMPLETED_TYPE = 'REMOVE_COMPLETED';
 
 const KEY_TODO = 'KEY_TODO';
 
@@ -27,6 +28,12 @@ const taskRemove = (todos, id) => {
   return newTodos;
 };
 
+const RemoveCompleted = todos => {
+  const newTodos = todos.filter(todo => !todo.done);
+  localStorage.setItem(KEY_TODO, JSON.stringify(newTodos));
+  return newTodos;
+};
+
 const addTodo = (todos, value) => {
   const todo = { title: value, done: false, id: uuidv4() };
   const newDotos = todos ? [...todos.slice(), todo] : [todo];
@@ -42,6 +49,8 @@ const reducer = (state, { type, payload }) => {
       return addTodo(state, payload.value);
     case TASK_REMOVE_TYPE:
       return taskRemove(state, payload.id);
+    case REMOVE_COMPLETED_TYPE:
+      return RemoveCompleted(state);
     case SET_UP_TYPE:
       return setUp();
     default:
@@ -68,7 +77,17 @@ const useTodosStore = () => {
     dispatch({ type: TASK_REMOVE_TYPE, payload: { id } });
   });
 
-  return [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove];
+  const handleRemoveCompleted = useCallback(() => {
+    dispatch({ type: REMOVE_COMPLETED_TYPE });
+  });
+
+  return [
+    todos,
+    handleAddNewTodo,
+    handleTaskDone,
+    handleTaskRemove,
+    handleRemoveCompleted,
+  ];
 };
 
 export default useTodosStore;

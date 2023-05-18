@@ -1,6 +1,21 @@
+.panel {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+}
+
+.panel:nth-child(0) {
+  width: 40px;
+}
+
+.span_items_left {
+  font-size:14px;
+  font-family:'revert';
+  color: var(--dark);
+}
+
 .button {
     border: 0px;
-    color: var(--navy);
+    color: var(--dark);
     background-color: transparent;
     font-size:14px;
     font-family:'revert';

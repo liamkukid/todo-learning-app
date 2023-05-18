@@ -23,11 +23,13 @@ test('insert text', () => {
 test('add todo', () => {
   render(<App />);
   const linkElementInput = screen.getByPlaceholderText('New todo...');
-  const text = 'Entered Text';
-  fireEvent.change(linkElementInput, { target: { value: text } });
   const linkElementButton = screen.getByText(/Save/i);
+  const text = 'Entered Text';
+
+  fireEvent.change(linkElementInput, { target: { value: text } });
   fireEvent.click(linkElementButton);
   fireEvent.change(linkElementInput, { target: { value: '' } });
+
   const linkElementListItem = screen.getByText(text);
   expect(linkElementListItem).toBeInTheDocument();
 });

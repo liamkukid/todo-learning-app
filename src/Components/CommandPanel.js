@@ -13,7 +13,10 @@ function CommandPanel({
   return (
     <div className={style.panel}>
       <span className={style.span_items_left}>
-        {todos.filter(todo => !todo.done).length} items left
+        {todos !== null &&
+          todos.length > 0 &&
+          todos.filter(todo => !todo.done).length}{' '}
+        items left
       </span>
       <Button title="All" onClick={showAll} />
       <Button title="Active" onClick={filterActive} />

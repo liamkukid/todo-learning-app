@@ -1,8 +1,35 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders button', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/Save/i);
   expect(linkElement).toBeInTheDocument();
+});
+
+test('render input', () => {
+  render(<App />);
+  const linkElement = screen.getByPlaceholderText('New todo...');
+  expect(linkElement).toBeInTheDocument();
+});
+
+test('insert text', () => {
+  render(<App />);
+  const linkElementInput = screen.getByPlaceholderText('New todo...');
+  fireEvent.change(linkElementInput, { target: { value: '23' } });
+  expect(linkElementInput.value).toBe('23');
+});
+
+test('add todo', () => {
+  render(<App />);
+  const linkElementInput = screen.getByPlaceholderText('New todo...');
+  const linkElementButton = screen.getByText(/Save/i);
+  const text = 'Entered Text';
+
+  fireEvent.change(linkElementInput, { target: { value: text } });
+  fireEvent.click(linkElementButton);
+  fireEvent.change(linkElementInput, { target: { value: '' } });
+
+  const linkElementListItem = screen.getByText(text);
+  expect(linkElementListItem).toBeInTheDocument();
 });

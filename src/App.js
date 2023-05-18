@@ -1,35 +1,11 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Input from './Components/Input';
 import List from './Components/List';
 import style from './App.module.scss';
+import useTodosStore from './UseTodosStore';
 
-function App() {
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
-
-  function addNewTodo(value) {
-    const newTask = { title: value, done: false, id: uuidv4() };
-    const newDotos = todos ? [...todos.slice(), newTask] : [newTask];
-    setTodos(newDotos);
-    localStorage.setItem('todos', JSON.stringify(newDotos));
-  }
-
-  function handleTaskDone(value, done) {
-    const newTodos = todos.map(obj => {
-      if (obj.id === value) {
-        return { ...obj, done: done };
-      }
-      return obj;
-    });
-    setTodos(newTodos);
-    localStorage.setItem('todos', JSON.stringify(newTodos));
-  }
-
-  function handleTaskRemove(value) {
-    const newTodos = todos.filter(x => x.id !== value);
-    setTodos(newTodos);
-    localStorage.setItem('todos', JSON.stringify(newTodos));
-  }
+export default function App() {
+  const [todos, handleAddNewTodo, handleTaskDone, handleTaskRemove] =
+    useTodosStore();
 
   return (
     <div className={style.app}>
@@ -39,7 +15,7 @@ function App() {
         }}
         className={style.head}
       >
-        <Input onSubmit={addNewTodo} />
+        <Input onSubmit={handleAddNewTodo} />
       </div>
       <div className={style.body}>
         <List
@@ -51,5 +27,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

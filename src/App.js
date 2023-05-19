@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { SHOW_ALL } from './Filters';
 import Input from './Components/Input';
 import List from './Components/List';
 import CommandPanel from './Components/CommandPanel';
@@ -5,6 +8,7 @@ import style from './App.module.scss';
 import useTodosStore from './UseTodosStore';
 
 export default function App() {
+  const [filter, setFilter] = useState(SHOW_ALL);
   const [
     todos,
     handleAddNewTodo,
@@ -12,9 +16,6 @@ export default function App() {
     handleTaskRemove,
     handleRemoveCompleted,
   ] = useTodosStore();
-  const test = e => {
-    console.log(e.target.value);
-  };
 
   return (
     <div className={style.app}>
@@ -30,9 +31,7 @@ export default function App() {
         <div className={style.commandPanel}>
           <CommandPanel
             todos={todos}
-            showAll={test}
-            filterActive={test}
-            filterCompleted={test}
+            onFilterChanged={value => setFilter(value)}
             clearCompleted={handleRemoveCompleted}
           />
         </div>
@@ -40,6 +39,7 @@ export default function App() {
       <div className={style.body}>
         <List
           todos={todos}
+          filter={filter}
           onDone={handleTaskDone}
           onRemove={handleTaskRemove}
         />

@@ -1,15 +1,10 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { FILTER_ACTIVE, FILTER_COMPLETED, SHOW_ALL } from '../Filters';
 
 import style from './commandPanel.module.scss';
 
-function CommandPanel({
-  todos,
-  showAll,
-  filterActive,
-  filterCompleted,
-  clearCompleted,
-}) {
+function CommandPanel({ todos, onFilterChanged, clearCompleted }) {
   return (
     <div className={style.panel}>
       <span className={style.span_items_left}>
@@ -18,9 +13,12 @@ function CommandPanel({
           todos.filter(todo => !todo.done).length}{' '}
         items left
       </span>
-      <Button title="All" onClick={showAll} />
-      <Button title="Active" onClick={filterActive} />
-      <Button title="Completed" onClick={filterCompleted} />
+      <Button title="All" onClick={() => onFilterChanged(SHOW_ALL)} />
+      <Button title="Active" onClick={() => onFilterChanged(FILTER_ACTIVE)} />
+      <Button
+        title="Completed"
+        onClick={() => onFilterChanged(FILTER_COMPLETED)}
+      />
       <Button title="Clear Completed" onClick={clearCompleted} />
     </div>
   );
@@ -49,9 +47,7 @@ CommandPanel.propTypes = {
       id: PropTypes.string,
     })
   ),
-  showAll: PropTypes.func.isRequired,
-  filterActive: PropTypes.func.isRequired,
-  filterCompleted: PropTypes.func.isRequired,
+  onFilterChanged: PropTypes.func.isRequired,
   clearCompleted: PropTypes.func.isRequired,
 };
 

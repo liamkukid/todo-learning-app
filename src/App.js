@@ -9,13 +9,8 @@ import useTodosStore from './UseTodosStore';
 
 export default function App() {
   const [filter, setFilter] = useState(SHOW_ALL);
-  const [
-    todos,
-    handleAddNewTodo,
-    handleTaskDone,
-    handleTaskRemove,
-    handleRemoveCompleted,
-  ] = useTodosStore();
+  const [todos, addNewTodo, todoDone, todoRemove, removeCompleted] =
+    useTodosStore();
 
   return (
     <div className={style.app}>
@@ -26,13 +21,13 @@ export default function App() {
         className={style.head}
       >
         <div className={style.input}>
-          <Input onSubmit={handleAddNewTodo} />
+          <Input onSubmit={addNewTodo} />
         </div>
         <div className={style.commandPanel}>
           <CommandPanel
             todos={todos}
             onFilterChanged={value => setFilter(value)}
-            onRemoveCompleted={handleRemoveCompleted}
+            onRemoveCompleted={removeCompleted}
           />
         </div>
       </div>
@@ -40,8 +35,8 @@ export default function App() {
         <List
           todos={todos}
           filter={filter}
-          onDone={handleTaskDone}
-          onRemove={handleTaskRemove}
+          onDone={todoDone}
+          onRemove={todoRemove}
         />
       </div>
     </div>

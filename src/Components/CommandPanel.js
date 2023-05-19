@@ -4,7 +4,7 @@ import { FILTER_ACTIVE, FILTER_COMPLETED, SHOW_ALL } from '../Filters';
 
 import style from './commandPanel.module.scss';
 
-function CommandPanel({ todos, onFilterChanged, clearCompleted }) {
+function CommandPanel({ todos, onFilterChanged, onRemoveCompleted }) {
   return (
     <div className={style.panel}>
       <span className={style.span_items_left}>
@@ -19,7 +19,7 @@ function CommandPanel({ todos, onFilterChanged, clearCompleted }) {
         title="Completed"
         onClick={() => onFilterChanged(FILTER_COMPLETED)}
       />
-      <Button title="Clear Completed" onClick={clearCompleted} />
+      <Button title="Remove Completed" onClick={onRemoveCompleted} />
     </div>
   );
 }
@@ -48,7 +48,7 @@ CommandPanel.propTypes = {
     })
   ),
   onFilterChanged: PropTypes.func.isRequired,
-  clearCompleted: PropTypes.func.isRequired,
+  onRemoveCompleted: PropTypes.func.isRequired,
 };
 
 CommandPanel.defaultProps = {

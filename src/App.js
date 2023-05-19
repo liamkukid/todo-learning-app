@@ -32,7 +32,7 @@ export default function App() {
           <CommandPanel
             todos={todos}
             onFilterChanged={value => setFilter(value)}
-            clearCompleted={handleRemoveCompleted}
+            onRemoveCompleted={handleRemoveCompleted}
           />
         </div>
       </div>

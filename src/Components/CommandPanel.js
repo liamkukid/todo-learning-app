@@ -5,17 +5,14 @@ import Button from './Button';
 import style from './commandPanel.module.scss';
 
 export default function CommandPanel({
-  todos,
+  todosLeftCount,
   onFilterChanged,
   onRemoveCompleted,
 }) {
   return (
     <div className={style.panel}>
       <span className={style.span_items_left}>
-        {todos !== null && todos.length > 0
-          ? todos.filter(todo => !todo.done).length
-          : 'no'}{' '}
-        items left
+        {todosLeftCount > 0 ? todosLeftCount : 'no'} items left
       </span>
       <Button title="All" onClick={() => onFilterChanged(SHOW_ALL)} />
       <Button title="Active" onClick={() => onFilterChanged(FILTER_ACTIVE)} />
@@ -29,17 +26,7 @@ export default function CommandPanel({
 }
 
 CommandPanel.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      done: PropTypes.bool,
-      id: PropTypes.string,
-    })
-  ),
+  todosLeftCount: PropTypes.number.isRequired,
   onFilterChanged: PropTypes.func.isRequired,
   onRemoveCompleted: PropTypes.func.isRequired,
-};
-
-CommandPanel.defaultProps = {
-  todos: [],
 };

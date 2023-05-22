@@ -52,5 +52,7 @@ export const { addTodo, todoDone, todoRemove, removeCompleted } =
   todosSlice.actions;
 
 export const selectTodos = state => state.todos;
+export const selectTodosLeftCount = state =>
+  state.todos.filter(todo => !todo.done).length;
 
 export default todosSlice.reducer;

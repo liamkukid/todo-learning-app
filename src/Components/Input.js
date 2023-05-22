@@ -1,15 +1,17 @@
 import { useRef } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import style from './input.module.scss';
+import { addTodo } from '../features/todos/todosSlice';
 
-export default function Input({ onSubmit }) {
+export default function Input() {
+  const dispatch = useDispatch();
   const inputRef = useRef();
 
   const handleSubmit = e => {
     e.preventDefault();
     e.stopPropagation();
     if (inputRef.current.value) {
-      onSubmit(inputRef.current.value);
+      dispatch(addTodo(inputRef.current.value));
     }
   };
 
@@ -29,7 +31,3 @@ export default function Input({ onSubmit }) {
     </form>
   );
 }
-
-Input.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

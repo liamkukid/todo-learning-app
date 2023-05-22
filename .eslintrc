@@ -21,13 +21,15 @@
         "parser": "@babel/eslint-parser",
         "sourceType": "module",
         "allowImportExportEverywhere": true,
-        "requireConfigFile": false
+        "requireConfigFile": false,
+        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/jsx-no-bind": "off",
         "import/prefer-default-export": "off",
-        "import/no-extraneous-dependencies": "off",
         "prettier/prettier": "error",
         "no-unused-vars": "warn",
         "no-console": "off",

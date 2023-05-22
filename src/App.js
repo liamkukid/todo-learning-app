@@ -5,7 +5,7 @@ import Input from './Components/Input';
 import List from './Components/List';
 import CommandPanel from './Components/CommandPanel';
 import style from './App.module.scss';
-import useTodosStore from './UseTodosStore';
+import useTodosStore from './Store/UseTodosStore';
 
 export default function App() {
   const [filter, setFilter] = useState(SHOW_ALL);

@@ -1,16 +1,23 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { SHOW_ALL } from './Filters';
 import Input from './Components/Input';
 import List from './Components/List';
 import CommandPanel from './Components/CommandPanel';
 import style from './App.module.scss';
-import useTodosStore from './Store/UseTodosStore';
+import {
+  addTodo,
+  todoDone,
+  todoRemove,
+  removeCompleted,
+  selectTodos,
+} from './features/todos/todosSlice';
 
 export default function App() {
+  const todos = useSelector(selectTodos);
+  const dispatch = useDispatch();
   const [filter, setFilter] = useState(SHOW_ALL);
-  const [todos, addNewTodo, todoDone, todoRemove, removeCompleted] =
-    useTodosStore();
 
   return (
     <div className={style.app}>
@@ -21,13 +28,13 @@ export default function App() {
         className={style.head}
       >
         <div className={style.input}>
-          <Input onSubmit={addNewTodo} />
+          <Input onSubmit={title => dispatch(addTodo(title))} />
         </div>
         <div className={style.commandPanel}>
           <CommandPanel
             todos={todos}
             onFilterChanged={value => setFilter(value)}
-            onRemoveCompleted={removeCompleted}
+            onRemoveCompleted={() => dispatch(removeCompleted())}
           />
         </div>
       </div>
@@ -35,8 +42,8 @@ export default function App() {
         <List
           todos={todos}
           filter={filter}
-          onDone={todoDone}
-          onRemove={todoRemove}
+          onDone={(id, done) => dispatch(todoDone({ id, done }))}
+          onRemove={id => dispatch(todoRemove(id))}
         />
       </div>
     </div>

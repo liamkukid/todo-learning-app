@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { FILTER_ACTIVE, FILTER_COMPLETED } from '../Filters';
+
 import style from './list.module.scss';
 import gabarge from '../icons/gabarge.svg';
-import {
-  todoDone,
-  todoRemove,
-  selectTodos,
-} from '../features/todos/todosSlice';
+import { filteredTodos } from '../features/filterSlice';
+import { todoDone, todoRemove } from '../features/todosSlice';
 
-export default function List({ filter }) {
-  const todos = useSelector(selectTodos);
+export default function List() {
+  const todos = useSelector(filteredTodos);
   const dispatch = useDispatch();
   const handleChange = e => {
     const { value, checked } = e.target;
@@ -26,20 +22,9 @@ export default function List({ filter }) {
     return <div />;
   }
 
-  const filteredTodos = () => {
-    switch (filter) {
-      case FILTER_ACTIVE:
-        return todos.filter(todo => !todo.done);
-      case FILTER_COMPLETED:
-        return todos.filter(todo => todo.done);
-      default:
-        return todos;
-    }
-  };
-
   return (
     <div className={style.list}>
-      {filteredTodos().map(todo => (
+      {todos.map(todo => (
         <div
           key={todo.id}
           className={`${style.list_item} ${
@@ -66,7 +51,3 @@ export default function List({ filter }) {
     </div>
   );
 }
-
-List.propTypes = {
-  filter: PropTypes.string.isRequired,
-};

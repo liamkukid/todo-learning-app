@@ -1,14 +1,9 @@
-import { useState } from 'react';
-
-import { SHOW_ALL } from './Filters';
 import Input from './Components/Input';
 import List from './Components/List';
 import CommandPanel from './Components/CommandPanel';
 import style from './App.module.scss';
 
 export default function App() {
-  const [filter, setFilter] = useState(SHOW_ALL);
-
   return (
     <div className={style.app}>
       <div
@@ -21,11 +16,11 @@ export default function App() {
           <Input />
         </div>
         <div className={style.commandPanel}>
-          <CommandPanel onFilterChanged={value => setFilter(value)} />
+          <CommandPanel />
         </div>
       </div>
       <div className={style.body}>
-        <List filter={filter} />
+        <List />
       </div>
     </div>
   );

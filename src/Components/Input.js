@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import style from './input.module.scss';
-import { addTodo } from '../features/todos/todosSlice';
+import { addTodo } from '../features/todosSlice';
 
 export default function Input() {
   const dispatch = useDispatch();

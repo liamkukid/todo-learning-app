@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { FILTER_ACTIVE, FILTER_COMPLETED, SHOW_ALL } from '../Filters';
 import Button from './Button';
 import style from './commandPanel.module.scss';
 import {
-  removeCompleted,
-  selectTodosLeftCount,
-} from '../features/todos/todosSlice';
+  filterActive,
+  showAll,
+  filterCompleted,
+} from '../features/filterSlice';
+import { removeCompleted, selectTodosLeftCount } from '../features/todosSlice';
 
-export default function CommandPanel({ onFilterChanged }) {
+export default function CommandPanel() {
   const todosLeftCount = useSelector(selectTodosLeftCount);
   const dispatch = useDispatch();
 
@@ -18,12 +18,9 @@ export default function CommandPanel({ onFilterChanged }) {
       <span className={style.span_items_left}>
         {todosLeftCount > 0 ? todosLeftCount : 'no'} items left
       </span>
-      <Button title="All" onClick={() => onFilterChanged(SHOW_ALL)} />
-      <Button title="Active" onClick={() => onFilterChanged(FILTER_ACTIVE)} />
-      <Button
-        title="Completed"
-        onClick={() => onFilterChanged(FILTER_COMPLETED)}
-      />
+      <Button title="All" onClick={() => dispatch(showAll())} />
+      <Button title="Active" onClick={() => dispatch(filterActive())} />
+      <Button title="Completed" onClick={() => dispatch(filterCompleted())} />
       <Button
         title="Remove Completed"
         onClick={() => dispatch(removeCompleted())}
@@ -31,7 +28,3 @@ export default function CommandPanel({ onFilterChanged }) {
     </div>
   );
 }
-
-CommandPanel.propTypes = {
-  onFilterChanged: PropTypes.func.isRequired,
-};

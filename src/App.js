@@ -10,14 +10,11 @@ import {
   addTodo,
   todoDone,
   todoRemove,
-  removeCompleted,
   selectTodos,
-  selectTodosLeftCount,
 } from './features/todos/todosSlice';
 
 export default function App() {
   const todos = useSelector(selectTodos);
-  const todosLeftCount = useSelector(selectTodosLeftCount);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState(SHOW_ALL);
 
@@ -33,11 +30,7 @@ export default function App() {
           <Input onSubmit={title => dispatch(addTodo(title))} />
         </div>
         <div className={style.commandPanel}>
-          <CommandPanel
-            todosLeftCount={todosLeftCount}
-            onFilterChanged={value => setFilter(value)}
-            onRemoveCompleted={() => dispatch(removeCompleted())}
-          />
+          <CommandPanel onFilterChanged={value => setFilter(value)} />
         </div>
       </div>
       <div className={style.body}>

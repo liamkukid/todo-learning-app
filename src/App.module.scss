@@ -10,11 +10,24 @@
 }
 
 .head {
-  display: flex;  
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.input {
+  height: 90%;
+  display: flex;
+  align-items: center;  
+}
+
+.commandPanel {
+  height: 10%;
+  display: flex;
+  align-items: center;  
 }
 
 .body {
-  background-color: var(--ligth-beige);
+  background-color: var(--ligth-beige);  
+  overflow: overlay;
 }

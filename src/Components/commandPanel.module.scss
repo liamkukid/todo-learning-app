@@ -12,24 +12,3 @@
   font-family:'revert';
   color: var(--dark);
 }
-
-.button {
-    border: 0px;
-    color: var(--dark);
-    background-color: transparent;
-    font-size:14px;
-    font-family:'revert';
-}
-
-.button:hover,
-.button:focus {
-    cursor: pointer;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-}
-
-.button:active {
-  transform: translateY(0);
-}

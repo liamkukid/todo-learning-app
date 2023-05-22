@@ -3,12 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 export const TODO_DONE_TYPE = 'TASK_DONE';
 export const ADD_TODO_TYPE = 'ADD_TODO';
 export const TODO_REMOVE_TYPE = 'TASK_REMOVE';
-export const RESET_TYPE = 'SET_UP';
+export const SET_UP_TYPE = 'SET_UP';
 export const REMOVE_COMPLETED_TYPE = 'REMOVE_COMPLETED';
 
 const KEY_TODO = 'KEY_TODO';
 
-const reset = () => JSON.parse(localStorage.getItem(KEY_TODO));
+const setUp = () => JSON.parse(localStorage.getItem(KEY_TODO)) ?? [];
 
 const todoDone = (todos, id, done) => {
   const newTodos = todos.map(obj => {
@@ -35,7 +35,7 @@ const removeCompleted = todos => {
 
 const addTodo = (todos, value) => {
   const todo = { title: value, done: false, id: uuidv4() };
-  const newDotos = todos ? [...todos.slice(), todo] : [todo];
+  const newDotos = [...todos, todo];
   localStorage.setItem(KEY_TODO, JSON.stringify(newDotos));
   return newDotos;
 };
@@ -50,8 +50,8 @@ export const reducer = (state, { type, payload }) => {
       return todoRemove(state, payload.id);
     case REMOVE_COMPLETED_TYPE:
       return removeCompleted(state);
-    case RESET_TYPE:
-      return reset();
+    case SET_UP_TYPE:
+      return setUp();
     default:
       return state;
   }

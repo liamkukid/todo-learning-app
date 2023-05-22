@@ -1,8 +1,8 @@
-import { useRef, memo } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import style from './input.module.scss';
 
-function Input({ onSubmit }) {
+export default function Input({ onSubmit }) {
   const inputRef = useRef();
 
   const handleSubmit = e => {
@@ -29,8 +29,6 @@ function Input({ onSubmit }) {
     </form>
   );
 }
-
-export default memo(Input);
 
 Input.propTypes = {
   onSubmit: PropTypes.func.isRequired,

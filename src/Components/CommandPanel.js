@@ -1,16 +1,20 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { FILTER_ACTIVE, FILTER_COMPLETED, SHOW_ALL } from '../Filters';
 
+import Button from './Button';
 import style from './commandPanel.module.scss';
 
-function CommandPanel({ todos, onFilterChanged, onRemoveCompleted }) {
+export default function CommandPanel({
+  todos,
+  onFilterChanged,
+  onRemoveCompleted,
+}) {
   return (
     <div className={style.panel}>
       <span className={style.span_items_left}>
-        {todos !== null &&
-          todos.length > 0 &&
-          todos.filter(todo => !todo.done).length}{' '}
+        {todos !== null && todos.length > 0
+          ? todos.filter(todo => !todo.done).length
+          : 'no'}{' '}
         items left
       </span>
       <Button title="All" onClick={() => onFilterChanged(SHOW_ALL)} />
@@ -23,21 +27,6 @@ function CommandPanel({ todos, onFilterChanged, onRemoveCompleted }) {
     </div>
   );
 }
-
-function Button({ title, onClick }) {
-  return (
-    <button
-      className={style.button}
-      type="button"
-      onClick={onClick}
-      value={title}
-    >
-      {title}
-    </button>
-  );
-}
-
-export default memo(CommandPanel);
 
 CommandPanel.propTypes = {
   todos: PropTypes.arrayOf(
@@ -53,9 +42,4 @@ CommandPanel.propTypes = {
 
 CommandPanel.defaultProps = {
   todos: [],
-};
-
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };

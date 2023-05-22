@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import {
   TODO_DONE_TYPE,
-  RESET_TYPE,
+  SET_UP_TYPE,
   ADD_TODO_TYPE,
   TODO_REMOVE_TYPE,
   REMOVE_COMPLETED_TYPE,
@@ -12,7 +12,7 @@ const useTodosStore = () => {
   const [todos, dispatch] = useReducer(reducer);
 
   useEffect(() => {
-    dispatch({ type: RESET_TYPE });
+    dispatch({ type: SET_UP_TYPE });
   }, []);
 
   const addNewTodo = useCallback(value => {

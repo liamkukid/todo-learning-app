@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import style from './list.module.scss';
 import gabarge from '../icons/gabarge.svg';
-import { filteredTodos } from '../features/filterSlice';
 import { todoDone, todoRemove } from '../features/todosSlice';
+import { filteredTodos } from '../features/selectTodos';
 
 export default function List() {
   const todos = useSelector(filteredTodos);

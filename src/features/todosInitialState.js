@@ -1,6 +1,8 @@
-import { KEY_TODO } from './localStorageMiddleware';
+import { KEY_TODO } from '../globalConst';
 
-const todosInitialState = () =>
-  JSON.parse(localStorage.getItem(KEY_TODO)) ?? [];
+const todosInitialState = () => {
+  const initState = JSON.parse(localStorage.getItem(KEY_TODO)) ?? [];
+  return initState;
+};
 
 export default todosInitialState;

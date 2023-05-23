@@ -1,36 +1,30 @@
-import PropTypes from 'prop-types';
-import { FILTER_ACTIVE, FILTER_COMPLETED } from '../Filters';
+import { useSelector, useDispatch } from 'react-redux';
+
 import style from './list.module.scss';
 import gabarge from '../icons/gabarge.svg';
+import { todoDone, todoRemove } from '../features/todosSlice';
+import { filteredTodos } from '../features/selectTodos';
 
-export default function List({ todos, filter, onDone, onRemove }) {
+export default function List() {
+  const todos = useSelector(filteredTodos);
+  const dispatch = useDispatch();
   const handleChange = e => {
     const { value, checked } = e.target;
-    onDone(value, checked);
+    const payload = { id: value, done: checked };
+    dispatch(todoDone(payload));
   };
 
   const handleRemoveClick = e => {
-    onRemove(e.target.parentElement.value);
+    dispatch(todoRemove(e.target.parentElement.value));
   };
 
   if (!todos || todos.lenght <= 0) {
     return <div />;
   }
 
-  const filteredTodos = () => {
-    switch (filter) {
-      case FILTER_ACTIVE:
-        return todos.filter(todo => !todo.done);
-      case FILTER_COMPLETED:
-        return todos.filter(todo => todo.done);
-      default:
-        return todos;
-    }
-  };
-
   return (
     <div className={style.list}>
-      {filteredTodos().map(todo => (
+      {todos.map(todo => (
         <div
           key={todo.id}
           className={`${style.list_item} ${
@@ -57,20 +51,3 @@ export default function List({ todos, filter, onDone, onRemove }) {
     </div>
   );
 }
-
-List.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      done: PropTypes.bool,
-      id: PropTypes.string,
-    })
-  ),
-  filter: PropTypes.string.isRequired,
-  onDone: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-};
-
-List.defaultProps = {
-  todos: [],
-};

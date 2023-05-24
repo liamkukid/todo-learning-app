@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly for empty List 1`] = `<div />`;
+
+exports[`renders correctly for not empty List 1`] = `
+<div
+  className="list"
+>
+  <div
+    className="list_item "
+  >
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="14e520cd-63f2-485e-9b3b-072ce068554e"
+    />
+    todo 1
+    <button
+      className="remove_todo_button"
+      onClick={[Function]}
+      type="button"
+      value="14e520cd-63f2-485e-9b3b-072ce068554e"
+    >
+      <img
+        alt="gabarge"
+        className="gabarge-logo"
+        src="gabarge.svg"
+      />
+    </button>
+  </div>
+  <div
+    className="list_item list_item_done"
+  >
+    <input
+      checked={true}
+      onChange={[Function]}
+      type="checkbox"
+      value="ca55ddf3-367b-47ac-8c74-0a8dbd6ee9b8"
+    />
+    todo 2
+    <button
+      className="remove_todo_button"
+      onClick={[Function]}
+      type="button"
+      value="ca55ddf3-367b-47ac-8c74-0a8dbd6ee9b8"
+    >
+      <img
+        alt="gabarge"
+        className="gabarge-logo"
+        src="gabarge.svg"
+      />
+    </button>
+  </div>
+</div>
+`;

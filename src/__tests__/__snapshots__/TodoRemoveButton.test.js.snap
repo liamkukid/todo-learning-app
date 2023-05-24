@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly for TodoRemoveButton 1`] = `
+<button
+  className="remove_todo_button"
+  onClick={[Function]}
+  type="button"
+  value="14e520cd-63f2-485e-9b3b-072ce068554e"
+>
+  <img
+    alt="gabarge"
+    className="gabarge-logo"
+    src="gabarge.svg"
+  />
+</button>
+`;

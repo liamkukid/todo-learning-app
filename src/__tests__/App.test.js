@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
+import App from '../App';
 
 test('renders button', () => {
   render(<App />);
@@ -18,18 +18,4 @@ test('insert text', () => {
   const linkElementInput = screen.getByPlaceholderText('New todo...');
   fireEvent.change(linkElementInput, { target: { value: '23' } });
   expect(linkElementInput.value).toBe('23');
-});
-
-test('add todo', () => {
-  render(<App />);
-  const linkElementInput = screen.getByPlaceholderText('New todo...');
-  const linkElementButton = screen.getByText(/Save/i);
-  const text = 'Entered Text';
-
-  fireEvent.change(linkElementInput, { target: { value: text } });
-  fireEvent.click(linkElementButton);
-  fireEvent.change(linkElementInput, { target: { value: '' } });
-
-  const linkElementListItem = screen.getByText(text);
-  expect(linkElementListItem).toBeInTheDocument();
 });

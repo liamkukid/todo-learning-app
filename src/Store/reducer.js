@@ -1,3 +1,5 @@
+// Not in use. I am only keeping this as an example of a reducer implementation.
+
 import { v4 as uuidv4 } from 'uuid';
 
 export const TODO_DONE_TYPE = 'TASK_DONE';

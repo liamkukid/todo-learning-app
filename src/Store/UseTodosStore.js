@@ -1,3 +1,5 @@
+// Not in use. I am only keeping this as an example of using a hook and an example of custom hook.
+
 import { useCallback, useEffect, useReducer } from 'react';
 import {
   TODO_DONE_TYPE,

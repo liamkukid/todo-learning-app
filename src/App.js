@@ -1,6 +1,6 @@
 import Input from './Components/Input';
 import List from './Components/TodosList/List';
-import CommandPanel from './Components/CommandPanel';
+import CommandPanel from './Components/CommandPanel/CommandPanel';
 import style from './App.module.scss';
 
 export default function App() {

@@ -6,9 +6,9 @@ import {
   filterActive,
   showAll,
   filterCompleted,
-} from '../features/filterSlice';
-import { removeCompleted } from '../features/todosSlice';
-import { selectTodosLeftCount } from '../features/selectTodos';
+} from '../../features/filterSlice';
+import { removeCompleted } from '../../features/todosSlice';
+import { selectTodosLeftCount } from '../../features/selectTodos';
 
 export default function CommandPanel() {
   const todosLeftCount = useSelector(selectTodosLeftCount);

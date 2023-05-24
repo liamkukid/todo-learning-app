@@ -1,5 +1,5 @@
 import Input from './Components/Input';
-import List from './Components/List';
+import List from './Components/TodosList/List';
 import CommandPanel from './Components/CommandPanel';
 import style from './App.module.scss';
 

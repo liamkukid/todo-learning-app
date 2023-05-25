@@ -1,46 +1,25 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import todosReducer from '../features/todosSlice';
-
+import * as reduxHooks from 'react-redux';
+import * as actions from '../features/todosSlice';
 import Input from '../Components/Input';
 
+jest.mock('react-redux');
+
+const mockedDispatch = jest.spyOn(reduxHooks, 'useDispatch');
+const mockedAddTodo = jest.spyOn(actions, 'addTodo');
+
 describe('Input', () => {
-  let store;
-
-  beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        todos: todosReducer,
-      },
-      preloadedState: {
-        todos: [],
-      },
-    });
-  });
-
-  afterEach(() => {
-    store = null;
-  });
-
   it('renders correctly', () => {
-    const view = renderer
-      .create(
-        <Provider store={store}>
-          <Input />
-        </Provider>
-      )
-      .toJSON();
+    const view = renderer.create(<Input />);
     expect(view).toMatchSnapshot();
   });
 
-  it('add new todo to the store', () => {
-    render(
-      <Provider store={store}>
-        <Input />
-      </Provider>
-    );
+  it('should dispatch action', () => {
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    render(<Input />);
+
     const inputElement = screen.getByPlaceholderText('New todo...');
     const linkElementButton = screen.getByText(/Save/i);
     const text = 'Entered Text';
@@ -48,25 +27,23 @@ describe('Input', () => {
     fireEvent.change(inputElement, { target: { value: text } });
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.todos[0].title).toEqual(text);
-    expect(state.todos[0].done).toBeFalsy();
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedAddTodo).toHaveBeenCalledWith(text);
   });
 
-  it('add empty todo to the store', () => {
-    render(
-      <Provider store={store}>
-        <Input />
-      </Provider>
-    );
+  it('should not dispatch action for empty todo title', () => {
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    render(<Input />);
 
     const inputElement = screen.getByPlaceholderText('New todo...');
     const linkElementButton = screen.getByText(/Save/i);
+    const text = '';
 
-    fireEvent.change(inputElement, { target: { value: '' } });
+    fireEvent.change(inputElement, { target: { value: text } });
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.todos).toEqual([]);
+    expect(dispatch).not.toHaveBeenCalled();
+    expect(mockedAddTodo).not.toHaveBeenCalled();
   });
 });

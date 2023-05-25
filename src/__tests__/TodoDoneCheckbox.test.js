@@ -1,53 +1,35 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import todosReducer from '../features/todosSlice';
+import * as reduxHooks from 'react-redux';
+import * as actions from '../features/todosSlice';
 import TodoDoneCheckbox from '../Components/TodosList/TodoDoneCheckbox';
 
+jest.mock('react-redux');
+
+const mockedDispatch = jest.spyOn(reduxHooks, 'useDispatch');
+const mockedTodoDone = jest.spyOn(actions, 'todoDone');
+
 describe('TodoDoneCheckbox', () => {
-  let store;
   const todo = {
     title: 'todo 1',
     done: false,
     id: '14e520cd-63f2-485e-9b3b-072ce068554e',
   };
 
-  beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        todos: todosReducer,
-      },
-      preloadedState: {
-        todos: [todo],
-      },
-    });
-  });
-
-  afterEach(() => {
-    store = null;
-  });
-
   it('renders correctly', () => {
-    const tree = renderer.create(
-      <Provider store={store}>
-        <TodoDoneCheckbox todo={todo} />
-      </Provider>
-    );
-    expect(tree).toMatchSnapshot();
+    const view = renderer.create(<TodoDoneCheckbox todo={todo} />);
+    expect(view).toMatchSnapshot();
   });
 
   it('change the state of todo done=true', () => {
-    render(
-      <Provider store={store}>
-        <TodoDoneCheckbox todo={todo} />
-      </Provider>
-    );
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    render(<TodoDoneCheckbox todo={todo} />);
     const linkElementButton = screen.getByTestId('todo-checkbox');
 
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.todos[0].done).toBeTruthy();
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedTodoDone).toHaveBeenCalledWith({ id: todo.id, done: true });
   });
 });

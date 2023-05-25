@@ -10,21 +10,28 @@ jest.mock('react-redux');
 const mockedDispatch = jest.spyOn(reduxHooks, 'useDispatch');
 const mockedUseSelector = jest.spyOn(reduxHooks, 'useSelector');
 
-describe('CommandPanel', () => {
-  it('renders correctly with no todos', () => {
+describe('CommandPanel renders', () => {
+  it('correctly with no todos', () => {
     const view = renderer.create(<CommandPanel />);
     expect(view).toMatchSnapshot();
   });
 
-  it('renders correctly with only one todo done', () => {
+  it('correctly with only one todo', () => {
     mockedUseSelector.mockReturnValue(1);
     const view = renderer.create(<CommandPanel />);
     expect(view).toMatchSnapshot();
   });
+});
+
+describe('CommandPanel dispatch calls', () => {
+  let dispatch;
+
+  beforeEach(() => {
+    dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+  });
 
   it('set filter to showAll', () => {
-    const dispatch = jest.fn();
-    mockedDispatch.mockReturnValue(dispatch);
     const mockedAction = jest.spyOn(filterActions, 'showAll');
     render(<CommandPanel />);
     const linkElementButton = screen.getByText('All');
@@ -36,8 +43,6 @@ describe('CommandPanel', () => {
   });
 
   it('set filter to filterActive', () => {
-    const dispatch = jest.fn();
-    mockedDispatch.mockReturnValue(dispatch);
     const mockedAction = jest.spyOn(filterActions, 'filterActive');
     render(<CommandPanel />);
     const linkElementButton = screen.getByText('Active');
@@ -49,8 +54,6 @@ describe('CommandPanel', () => {
   });
 
   it('set filter to filterCompleted', () => {
-    const dispatch = jest.fn();
-    mockedDispatch.mockReturnValue(dispatch);
     const mockedAction = jest.spyOn(filterActions, 'filterCompleted');
     render(<CommandPanel />);
     const linkElementButton = screen.getByText('Completed');
@@ -62,8 +65,6 @@ describe('CommandPanel', () => {
   });
 
   it('remove completed todos', () => {
-    const dispatch = jest.fn();
-    mockedDispatch.mockReturnValue(dispatch);
     const mockedAction = jest.spyOn(todosActions, 'removeCompleted');
     render(<CommandPanel />);
     const linkElementButton = screen.getByText('Remove Completed');

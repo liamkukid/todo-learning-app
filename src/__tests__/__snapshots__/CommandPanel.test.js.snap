@@ -45,7 +45,7 @@ exports[`CommandPanel renders correctly with no todos 1`] = `
 </div>
 `;
 
-exports[`CommandPanel renders correctly with only one todo done 1`] = `
+exports[`CommandPanel renders correctly with only one todo 1`] = `
 <div
   className="panel"
 >

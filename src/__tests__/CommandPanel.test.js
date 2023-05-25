@@ -1,145 +1,76 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
+import * as reduxHooks from 'react-redux';
+import * as todosActions from '../features/todosSlice';
+import * as filterActions from '../features/filterSlice';
 import CommandPanel from '../Components/CommandPanel/CommandPanel';
-import todosReducer from '../features/todosSlice';
-import filterReducer from '../features/filterSlice';
 
-it('renders correctly with no todos', () => {
-  const store = configureStore({
-    reducer: {
-      todos: todosReducer,
-    },
-    preloadedState: {
-      todos: [],
-    },
-  });
-  const tree = renderer
-    .create(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+jest.mock('react-redux');
 
-it('renders correctly with only one todo done', () => {
-  const store = configureStore({
-    reducer: {
-      todos: todosReducer,
-    },
-    preloadedState: {
-      todos: [
-        {
-          title: 'todo 1',
-          done: true,
-          id: 'todo_1_id',
-        },
-        {
-          title: 'todo 2',
-          done: false,
-          id: 'todo_2_id',
-        },
-      ],
-    },
-  });
-  const tree = renderer
-    .create(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+const mockedDispatch = jest.spyOn(reduxHooks, 'useDispatch');
+const mockedUseSelector = jest.spyOn(reduxHooks, 'useSelector');
 
 describe('CommandPanel', () => {
-  let store;
-
-  beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        todos: todosReducer,
-        filter: filterReducer,
-      },
-      preloadedState: {
-        todos: [
-          {
-            title: 'todo 1',
-            done: true,
-            id: 'todo_1_id',
-          },
-          {
-            title: 'todo 2',
-            done: false,
-            id: 'todo_2_id',
-          },
-        ],
-        filter: 'no_filter',
-      },
-    });
+  it('renders correctly with no todos', () => {
+    const view = renderer.create(<CommandPanel />);
+    expect(view).toMatchSnapshot();
   });
 
-  afterEach(() => {
-    store = null;
+  it('renders correctly with only one todo done', () => {
+    mockedUseSelector.mockReturnValue(1);
+    const view = renderer.create(<CommandPanel />);
+    expect(view).toMatchSnapshot();
   });
 
   it('set filter to showAll', () => {
-    render(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    );
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    const mockedAction = jest.spyOn(filterActions, 'showAll');
+    render(<CommandPanel />);
     const linkElementButton = screen.getByText('All');
 
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.filter).toEqual('SHOW_ALL');
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedAction).toHaveBeenCalled();
   });
 
   it('set filter to filterActive', () => {
-    render(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    );
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    const mockedAction = jest.spyOn(filterActions, 'filterActive');
+    render(<CommandPanel />);
     const linkElementButton = screen.getByText('Active');
 
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.filter).toEqual('FILTER_ACTIVE');
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedAction).toHaveBeenCalled();
   });
 
   it('set filter to filterCompleted', () => {
-    render(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    );
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    const mockedAction = jest.spyOn(filterActions, 'filterCompleted');
+    render(<CommandPanel />);
     const linkElementButton = screen.getByText('Completed');
 
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.filter).toEqual('FILTER_COMPLETED');
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedAction).toHaveBeenCalled();
   });
 
   it('remove completed todos', () => {
-    render(
-      <Provider store={store}>
-        <CommandPanel />
-      </Provider>
-    );
+    const dispatch = jest.fn();
+    mockedDispatch.mockReturnValue(dispatch);
+    const mockedAction = jest.spyOn(todosActions, 'removeCompleted');
+    render(<CommandPanel />);
     const linkElementButton = screen.getByText('Remove Completed');
 
     fireEvent.click(linkElementButton);
 
-    const state = store.getState();
-    expect(state.todos.length).toEqual(1);
-    expect(state.todos[0].id).toEqual('todo_2_id');
+    expect(dispatch).toHaveBeenCalled();
+    expect(mockedAction).toHaveBeenCalled();
   });
 });

@@ -19,6 +19,7 @@ exports[`renders correctly with todos 1`] = `
     todo 1
     <button
       className="remove_todo_button"
+      data-testid="todo-remove"
       onClick={[Function]}
       type="button"
       value="todo_1_id"
@@ -43,6 +44,7 @@ exports[`renders correctly with todos 1`] = `
     todo 2
     <button
       className="remove_todo_button"
+      data-testid="todo-remove"
       onClick={[Function]}
       type="button"
       value="todo_2_id"

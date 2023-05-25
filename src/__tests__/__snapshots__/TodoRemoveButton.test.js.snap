@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly for TodoRemoveButton 1`] = `
+exports[`TodoRemoveButton renders correctly 1`] = `
 <button
   className="remove_todo_button"
+  data-testid="todo-remove"
   onClick={[Function]}
   type="button"
   value="14e520cd-63f2-485e-9b3b-072ce068554e"

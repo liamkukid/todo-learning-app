@@ -13,6 +13,7 @@ export default function TodoDoneCheckbox({ todo }) {
 
   return (
     <input
+      data-testid="todo-checkbox"
       type="checkbox"
       value={todo.id}
       checked={todo.done}

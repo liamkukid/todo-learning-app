@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly for TodoDoneCheckbox 1`] = `
+exports[`TodoDoneCheckbox renders correctly 1`] = `
 <input
   checked={false}
+  data-testid="todo-checkbox"
   onChange={[Function]}
   type="checkbox"
   value="14e520cd-63f2-485e-9b3b-072ce068554e"

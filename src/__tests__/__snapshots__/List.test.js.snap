@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly with no todos 1`] = `<div />`;
+exports[`List renders correctly with no todos 1`] = `<div />`;
 
-exports[`renders correctly with todos 1`] = `
+exports[`List renders correctly with todos 1`] = `
 <div
   className="list"
 >

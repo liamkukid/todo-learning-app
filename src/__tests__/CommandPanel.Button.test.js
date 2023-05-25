@@ -1,5 +1,4 @@
 import renderer from 'react-test-renderer';
-
 import Button from '../Components/CommandPanel/Button';
 
 it('renders corretly for Button', () => {

@@ -8,7 +8,7 @@ import { filteredTodos } from '../../features/selectTodos';
 export default function List() {
   const todos = useSelector(filteredTodos);
 
-  if (!todos || todos?.length <= 0) {
+  if (!todos || todos.length <= 0) {
     return <div />;
   }
 

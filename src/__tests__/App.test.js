@@ -5,13 +5,13 @@ import store from '../Redux/store';
 
 describe('App', () => {
   it('renders correctly', () => {
-    const output = renderer
+    const view = renderer
       .create(
         <Provider store={store}>
           <App />
         </Provider>
       )
       .toJSON();
-    expect(output).toMatchSnapshot();
+    expect(view).toMatchSnapshot();
   });
 });

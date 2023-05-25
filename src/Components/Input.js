@@ -1,16 +1,17 @@
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import style from './input.module.scss';
 import { addTodo } from '../features/todosSlice';
 
 export default function Input() {
   const dispatch = useDispatch();
+  const inputRef = useRef();
 
   const handleSubmit = e => {
     e.preventDefault();
     e.stopPropagation();
-    const todoTitle = e.target.todo_input.value;
-    if (todoTitle) {
-      dispatch(addTodo(todoTitle));
+    if (inputRef.current.value) {
+      dispatch(addTodo(inputRef.current.value));
     }
   };
 
@@ -20,6 +21,7 @@ export default function Input() {
         className={style.form_input}
         name="todo_input"
         type="text"
+        ref={inputRef}
         id="todo_input"
         placeholder="New todo..."
       />

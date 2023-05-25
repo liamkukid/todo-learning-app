@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input renders correctly for Input 1`] = `
+exports[`renders correctly for Input 1`] = `
 <form
   className="form_content"
   onSubmit={[Function]}

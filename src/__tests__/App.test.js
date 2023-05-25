@@ -1,9 +1,17 @@
 import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 import App from '../App';
+import store from '../Redux/store';
 
-jest.mock('react-redux');
-
-it('renders correctly for App', () => {
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('App', () => {
+  it('renders correctly', () => {
+    const output = renderer
+      .create(
+        <Provider store={store}>
+          <App />
+        </Provider>
+      )
+      .toJSON();
+    expect(output).toMatchSnapshot();
+  });
 });

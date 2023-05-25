@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly for App 1`] = `
+exports[`App renders correctly 1`] = `
 <div
   className="app"
 >
@@ -84,7 +84,9 @@ exports[`renders correctly for App 1`] = `
   <div
     className="body"
   >
-    <div />
+    <div
+      className="list"
+    />
   </div>
 </div>
 `;

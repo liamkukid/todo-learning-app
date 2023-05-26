@@ -54,6 +54,9 @@
       "src/reportWebVitals.js",
       "src/Redux/store.js",
       "src/features/todosInitialState.js"
+    ],
+    "watchPathIgnorePatterns": [
+      "src/__tests__/utils"
     ]
   }
 }

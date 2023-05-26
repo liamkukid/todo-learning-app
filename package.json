@@ -51,7 +51,9 @@
   "jest": {
     "coveragePathIgnorePatterns" : [
       "src/index.js" ,
-      "src/reportWebVitals.js"
+      "src/reportWebVitals.js",
+      "src/Redux/store.js",
+      "src/features/todosInitialState.js"
     ]
   }
 }

@@ -12,11 +12,11 @@ describe('filterReducer should', () => {
     expect(reducer(previousState, showAll())).toEqual(SHOW_ALL);
   });
 
-  it('cnange filter state to FILTER_COMPLETED', () => {
+  it('change filter state to FILTER_COMPLETED', () => {
     expect(reducer(previousState, filterCompleted())).toEqual(FILTER_COMPLETED);
   });
 
-  it('cnange filter state to FILTER_ACTIVE', () => {
+  it('change filter state to FILTER_ACTIVE', () => {
     expect(reducer(previousState, filterActive())).toEqual(FILTER_ACTIVE);
   });
 });

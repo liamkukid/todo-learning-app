@@ -1,5 +1,5 @@
 import { screen, fireEvent } from '@testing-library/react';
-import App from '../App';
+import App from '../Components/App/App';
 import renderWithProviders from './utils/test-utils';
 
 const todoUuid = '14e520cd-63f2-485e-9b3b-072ce068554e';

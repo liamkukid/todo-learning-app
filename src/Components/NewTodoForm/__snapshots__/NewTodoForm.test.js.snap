@@ -6,9 +6,7 @@ exports[`Input renders correctly 1`] = `
   onSubmit={[Function]}
 >
   <input
-    className="form_input"
-    id="todo_input"
-    name="todo_input"
+    className="input"
     placeholder="New todo..."
     type="text"
   />

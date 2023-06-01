@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from './Button';
+import Button from '../Button/Button';
 import style from './commandPanel.module.scss';
 import {
   filterActive,

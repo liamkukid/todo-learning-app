@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
-import * as actions from '../features/todosSlice';
-import TodoRemoveButton from '../Components/TodosList/TodoRemoveButton';
+import * as actions from '../../features/todosSlice';
+import TodoRemoveButton from './TodoRemoveButton';
 
 jest.mock('react-redux');
 

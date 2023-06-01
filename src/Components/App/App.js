@@ -1,6 +1,6 @@
-import Input from './Components/Input';
-import List from './Components/TodosList/List';
-import CommandPanel from './Components/CommandPanel/CommandPanel';
+import NewTodoForm from '../NewTodoForm/NewTodoForm';
+import List from '../TodosList/List';
+import CommandPanel from '../CommandPanel/CommandPanel';
 import style from './App.module.scss';
 
 export default function App() {
@@ -12,8 +12,8 @@ export default function App() {
         }}
         className={style.head}
       >
-        <div className={style.input}>
-          <Input />
+        <div className={style.newTodoForm}>
+          <NewTodoForm />
         </div>
         <div className={style.commandPanel}>
           <CommandPanel />

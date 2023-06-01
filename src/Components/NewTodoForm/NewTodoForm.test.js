@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
-import * as actions from '../features/todosSlice';
-import Input from '../Components/Input';
+import * as actions from '../../features/todosSlice';
+import NewTodoForm from './NewTodoForm';
 
 jest.mock('react-redux');
 
@@ -11,14 +11,14 @@ const mockedAddTodo = jest.spyOn(actions, 'addTodo');
 
 describe('Input', () => {
   it('renders correctly', () => {
-    const view = renderer.create(<Input />);
+    const view = renderer.create(<NewTodoForm />);
     expect(view).toMatchSnapshot();
   });
 
   it('should dispatch action', () => {
     const dispatch = jest.fn();
     mockedDispatch.mockReturnValue(dispatch);
-    render(<Input />);
+    render(<NewTodoForm />);
 
     const inputElement = screen.getByPlaceholderText('New todo...');
     const linkElementButton = screen.getByText(/Save/i);
@@ -34,7 +34,7 @@ describe('Input', () => {
   it('should not dispatch action for empty todo title', () => {
     const dispatch = jest.fn();
     mockedDispatch.mockReturnValue(dispatch);
-    render(<Input />);
+    render(<NewTodoForm />);
 
     const inputElement = screen.getByPlaceholderText('New todo...');
     const linkElementButton = screen.getByText(/Save/i);

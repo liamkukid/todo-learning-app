@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+
+.input {
+    width: 80vw;
+    max-width: 450px;
+    height: 26px;
+    margin-bottom: 2px;
+    border-radius: 20px;
+    border: 2px solid var(--navy);
+    background-color: var(--grey);
+    font-size:20px;
+    font-family:'revert';
+    text-indent: 6px;
+}
+
+.input:focus,
+.input:hover {
+    outline: none;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+    background-color: var(--light);
+}

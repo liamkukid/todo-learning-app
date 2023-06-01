@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import style from './input.module.scss';
-import { addTodo } from '../features/todosSlice';
+import style from './NewTodoForm.module.scss';
+import Input from '../Input/Input';
+import { addTodo } from '../../features/todosSlice';
 
-export default function Input() {
+export default function NewTodoForm() {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -17,14 +18,7 @@ export default function Input() {
 
   return (
     <form className={style.form_content} onSubmit={handleSubmit}>
-      <input
-        className={style.form_input}
-        name="todo_input"
-        type="text"
-        ref={inputRef}
-        id="todo_input"
-        placeholder="New todo..."
-      />
+      <Input ref={inputRef} />
       <button className={style.form_submit} type="submit">
         Save
       </button>

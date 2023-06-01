@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import * as reduxHooks from 'react-redux';
-import List from '../Components/TodosList/List';
+import List from './List';
 
 jest.mock('react-redux');
 

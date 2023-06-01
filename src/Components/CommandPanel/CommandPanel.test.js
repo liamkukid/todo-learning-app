@@ -1,9 +1,9 @@
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
-import * as todosActions from '../features/todosSlice';
-import * as filterActions from '../features/filterSlice';
-import CommandPanel from '../Components/CommandPanel/CommandPanel';
+import * as todosActions from '../../features/todosSlice';
+import * as filterActions from '../../features/filterSlice';
+import CommandPanel from './CommandPanel';
 
 jest.mock('react-redux');
 

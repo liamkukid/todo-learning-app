@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - "master"
-      - "tests"
 
 permissions:
   contents: read

@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from './Button';
+import Button from '../Button/Button';
 import style from './commandPanel.module.scss';
 import {
   filterActive,
   showAll,
   filterCompleted,
-} from '../features/filterSlice';
-import { removeCompleted } from '../features/todosSlice';
-import { selectTodosLeftCount } from '../features/selectTodos';
+} from '../../features/filterSlice';
+import { removeCompleted } from '../../features/todosSlice';
+import { selectTodosLeftCount } from '../../features/selectTodos';
 
 export default function CommandPanel() {
   const todosLeftCount = useSelector(selectTodosLeftCount);

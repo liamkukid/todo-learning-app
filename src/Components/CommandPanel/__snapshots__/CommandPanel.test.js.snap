@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandPanel renders correctly with no todos 1`] = `
+<div
+  className="panel"
+>
+  <span
+    className="span_items_left"
+  >
+    no
+     items left
+  </span>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="All"
+  >
+    All
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Active"
+  >
+    Active
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Completed"
+  >
+    Completed
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Remove Completed"
+  >
+    Remove Completed
+  </button>
+</div>
+`;
+
+exports[`CommandPanel renders correctly with only one todo 1`] = `
+<div
+  className="panel"
+>
+  <span
+    className="span_items_left"
+  >
+    1
+     items left
+  </span>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="All"
+  >
+    All
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Active"
+  >
+    Active
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Completed"
+  >
+    Completed
+  </button>
+  <button
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Remove Completed"
+  >
+    Remove Completed
+  </button>
+</div>
+`;

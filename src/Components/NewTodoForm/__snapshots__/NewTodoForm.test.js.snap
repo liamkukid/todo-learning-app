@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<form
+  className="form_content"
+  onSubmit={[Function]}
+>
+  <input
+    className="input"
+    placeholder="New todo..."
+    type="text"
+  />
+  <button
+    className="form_submit"
+    type="submit"
+  >
+    Save
+  </button>
+</form>
+`;

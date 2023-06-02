@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders correctly with no todos 1`] = `<div />`;
+
+exports[`List renders correctly with todos 1`] = `
+<div
+  className="list"
+>
+  <div
+    className="list_item list_item_done"
+  >
+    <input
+      checked={true}
+      data-testid="todo-checkbox"
+      onChange={[Function]}
+      type="checkbox"
+      value="todo_1_id"
+    />
+    todo 1
+    <button
+      className="remove_todo_button"
+      data-testid="todo-remove"
+      onClick={[Function]}
+      type="button"
+      value="todo_1_id"
+    >
+      <img
+        alt="gabarge"
+        className="gabarge-logo"
+        src="gabarge.svg"
+      />
+    </button>
+  </div>
+  <div
+    className="list_item "
+  >
+    <input
+      checked={false}
+      data-testid="todo-checkbox"
+      onChange={[Function]}
+      type="checkbox"
+      value="todo_2_id"
+    />
+    todo 2
+    <button
+      className="remove_todo_button"
+      data-testid="todo-remove"
+      onClick={[Function]}
+      type="button"
+      value="todo_2_id"
+    >
+      <img
+        alt="gabarge"
+        className="gabarge-logo"
+        src="gabarge.svg"
+      />
+    </button>
+  </div>
+</div>
+`;

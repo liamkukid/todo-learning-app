@@ -6,8 +6,8 @@ const selectTodos = state => state.todos;
 const selectFilter = state => state.filter;
 
 export const selectTodosLeftCount = createSelector(selectTodos, todos => {
-  const filteredTodos = todos.filter(todo => !todo.done).length;
-  return filteredTodos;
+  const amount = todos.filter(todo => !todo.done).length;
+  return amount;
 });
 
 export const filteredTodos = createSelector(

@@ -15,38 +15,31 @@ describe('to-do app', () => {
   });
 
   it('create new todo with submit button', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task');
-    cy.get("button[type='submit']").click();
-    input.clear();
+    cy.get('input[type=text]').type('New Task');
+    cy.contains('Save').click();
+    cy.get('input[type=text]').clear();
 
     cy.contains('New Task').should('be.visible');
   });
 
   it('create new todo with enter', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task').type('{enter}');
-    input.clear();
+    cy.get('input[type=text]').type('New Task').type('{enter}').clear();
 
     cy.contains('New Task').should('be.visible');
   });
 
   it('add and remove todo', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task').type('{enter}');
-    input.clear();
+    cy.get('input[type=text]').type('New Task').type('{enter}').clear();
 
     cy.contains('New Task').should('be.visible');
 
-    cy.get("button[data-testid='todo-remove']").click();
+    cy.get('img.gabarge-logo').click();
 
     cy.contains('New Task').should('not.exist');
   });
 
   it('add todo and set as done', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task').type('{enter}');
-    input.clear();
+    cy.get('input[type=text]').type('New Task').type('{enter}').clear();
 
     cy.contains('1 items left').should('be.visible');
 
@@ -61,10 +54,9 @@ describe('to-do app', () => {
   });
 
   it('add 3 new todos and apply filters', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task 1').type('{enter}').clear();
-    input.type('New Task 2').type('{enter}').clear();
-    input.type('New Task 3').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 1').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 2').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 3').type('{enter}').clear();
 
     cy.getAllLocalStorage().then(result => {
       const todosObj = Object.values(result)[0];
@@ -90,20 +82,20 @@ describe('to-do app', () => {
   });
 
   it('add 3 new todos and remove completed', () => {
-    const input = cy.get('input[type=text]');
-    input.type('New Task 1').type('{enter}').clear();
-    input.type('New Task 2').type('{enter}').clear();
-    input.type('New Task 3').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 1').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 2').type('{enter}').clear();
+    cy.get('input[type=text]').type('New Task 3').type('{enter}').clear();
 
     cy.getAllLocalStorage().then(result => {
       const todosObj = Object.values(result)[0];
       const arrayTodos = Object.values(todosObj)[0];
       const jsonTodos = JSON.parse(arrayTodos);
       cy.get(`input[value='${jsonTodos[0].id}`).click();
+      cy.get(`input[value='${jsonTodos[1].id}`).click();
 
       cy.contains('Remove Completed').click();
       cy.get(`input[value='${jsonTodos[0].id}`).should('not.exist');
-      cy.get(`input[value='${jsonTodos[1].id}`).should('be.visible');
+      cy.get(`input[value='${jsonTodos[1].id}`).should('not.exist');
       cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
     });
   });

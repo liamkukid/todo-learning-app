@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
 describe('to-do app', () => {
+  const url = 'http://localhost:3000';
+  const keyTodo = 'KEY_TODO';
+
   beforeEach(() => {
-    cy.visit('http://localhost:3000/');
+    cy.visit(url);
   });
 
   it('displays layout', () => {
@@ -58,27 +61,28 @@ describe('to-do app', () => {
     cy.get('input[type=text]').type('New Task 2').type('{enter}').clear();
     cy.get('input[type=text]').type('New Task 3').type('{enter}').clear();
 
-    cy.getAllLocalStorage().then(result => {
-      const todosObj = Object.values(result)[0];
-      const arrayTodos = Object.values(todosObj)[0];
-      const jsonTodos = JSON.parse(arrayTodos);
-      cy.get(`input[value='${jsonTodos[0].id}`).click();
+    cy.getAllLocalStorage()
+      .its(url)
+      .its(keyTodo)
+      .then(todos => {
+        const jsonTodos = JSON.parse(todos);
+        cy.get(`input[value='${jsonTodos[0].id}`).click();
 
-      cy.contains('Active').click();
-      cy.get(`input[value='${jsonTodos[0].id}`).should('not.exist');
-      cy.get(`input[value='${jsonTodos[1].id}`).should('be.visible');
-      cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
+        cy.contains('Active').click();
+        cy.get(`input[value='${jsonTodos[0].id}`).should('not.exist');
+        cy.get(`input[value='${jsonTodos[1].id}`).should('be.visible');
+        cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
 
-      cy.contains('Completed').click();
-      cy.get(`input[value='${jsonTodos[0].id}`).should('be.visible');
-      cy.get(`input[value='${jsonTodos[1].id}`).should('not.exist');
-      cy.get(`input[value='${jsonTodos[2].id}`).should('not.exist');
+        cy.contains('Completed').click();
+        cy.get(`input[value='${jsonTodos[0].id}`).should('be.visible');
+        cy.get(`input[value='${jsonTodos[1].id}`).should('not.exist');
+        cy.get(`input[value='${jsonTodos[2].id}`).should('not.exist');
 
-      cy.contains('All').click();
-      cy.get(`input[value='${jsonTodos[0].id}`).should('be.visible');
-      cy.get(`input[value='${jsonTodos[1].id}`).should('be.visible');
-      cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
-    });
+        cy.contains('All').click();
+        cy.get(`input[value='${jsonTodos[0].id}`).should('be.visible');
+        cy.get(`input[value='${jsonTodos[1].id}`).should('be.visible');
+        cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
+      });
   });
 
   it('add 3 new todos and remove completed', () => {
@@ -86,17 +90,18 @@ describe('to-do app', () => {
     cy.get('input[type=text]').type('New Task 2').type('{enter}').clear();
     cy.get('input[type=text]').type('New Task 3').type('{enter}').clear();
 
-    cy.getAllLocalStorage().then(result => {
-      const todosObj = Object.values(result)[0];
-      const arrayTodos = Object.values(todosObj)[0];
-      const jsonTodos = JSON.parse(arrayTodos);
-      cy.get(`input[value='${jsonTodos[0].id}`).click();
-      cy.get(`input[value='${jsonTodos[1].id}`).click();
+    cy.getAllLocalStorage()
+      .its(url)
+      .its(keyTodo)
+      .then(todos => {
+        const jsonTodos = JSON.parse(todos);
+        cy.get(`input[value='${jsonTodos[0].id}`).click();
+        cy.get(`input[value='${jsonTodos[1].id}`).click();
 
-      cy.contains('Remove Completed').click();
-      cy.get(`input[value='${jsonTodos[0].id}`).should('not.exist');
-      cy.get(`input[value='${jsonTodos[1].id}`).should('not.exist');
-      cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
-    });
+        cy.contains('Remove Completed').click();
+        cy.get(`input[value='${jsonTodos[0].id}`).should('not.exist');
+        cy.get(`input[value='${jsonTodos[1].id}`).should('not.exist');
+        cy.get(`input[value='${jsonTodos[2].id}`).should('be.visible');
+      });
   });
 });
